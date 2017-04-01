@@ -1,0 +1,36 @@
+{
+  "name": "fmute",
+  "version": "1.0.0",
+  "description": "functions to mutate objects without changing them",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --no-cache",
+    "build": ".\\node_modules\\.bin\\webpack",
+    "tsc": ".\\node_modules\\.bin\\tsc",
+    "clean": ".\\node_modules\\.bin\\rimraf src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^19.2.2",
+    "jest": "^19.0.2",
+    "rimraf": "^2.6.1",
+    "ts-jest": "^19.0.6",
+    "ts-loader": "^2.0.3",
+    "tslint": "4.5.1",
+    "tslint-loader": "^3.4.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.2"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
