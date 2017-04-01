@@ -32,3 +32,4 @@ build/
 /*.d.ts
 src/**/*.js
 tests/**/*.js
+!webpack.config.js
