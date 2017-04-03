@@ -1,4 +1,12 @@
-export function set(source: any, path: (string | number)[], value: any): any {
+export function set(source: any, path: string | (string | number)[], value: any): any {
+    if (!path) {
+        return source;
+    }
+
+    if (typeof path === 'string') {
+        path = path.split('.');
+    }
+
     let length = path.length;
 
     if (!length) {
@@ -10,7 +18,8 @@ export function set(source: any, path: (string | number)[], value: any): any {
     }
 
     let key = path[0];
-    let target = Array.isArray(source || {}) ? [] : {};
+    source = source || {};
+    let target = Array.isArray(source) ? [] : {};
 
     if (length === 1) {
         return Object.assign(target, source, { [key]: value });

@@ -1,26 +1,41 @@
+import { cloneDeep } from 'lodash';
 import { set } from '../src';
 
-test('set: exists values', () => {
-    let source = {
-        a: {
-            c: {
-                v: 100
-            }
+let source = {
+    a: {
+        c: {
+            v: 100
         },
-        b: {
-            d: {
-                u: 200
-            }
+        e: [
+            100,
+            {
+                x: 200
+            },
+            300
+        ]
+    },
+    b: {
+        d: {
+            u: 200
         }
-    };
+    }
+};
 
-    let test1 = set(source, ['a', 'c', 'v'], 300);
+let model = cloneDeep(source);
 
-    expect(test1).toEqual({
+test('set: exists values', () => {
+    expect(set(source, ['a', 'c', 'v'], 300)).toEqual({
         a: {
             c: {
                 v: 300
-            }
+            },
+            e: [
+                100,
+                {
+                    x: 200
+                },
+                300
+            ]
         },
         b: {
             d: {
@@ -28,37 +43,22 @@ test('set: exists values', () => {
             }
         }
     });
-
-    expect(test1).not.toBe(source);
-    expect(test1.a).not.toBe(source.a);
-    expect(test1.a.c).not.toBe(source.a.c);
-    expect(test1.a.c.v).toBe(300);
-    expect(test1.b).toBe(source.b);
-    expect(test1.b.d).toBe(source.b.d);
 });
 
 test('set: new values', () => {
-    let source = {
-        a: {
-            c: {
-                v: 100
-            }
-        },
-        b: {
-            d: {
-                u: 200
-            }
-        }
-    };
-
-    let test1 = set(source, ['a', 'c', 'x'], 300);
-
-    expect(test1).toEqual({
+    expect(set(source, ['a', 'c', 'x'], 300)).toEqual({
         a: {
             c: {
                 v: 100,
                 x: 300
-            }
+            },
+            e: [
+                100,
+                {
+                    x: 200
+                },
+                300
+            ]
         },
         b: {
             d: {
@@ -66,40 +66,24 @@ test('set: new values', () => {
             }
         }
     });
-
-    expect(test1).not.toBe(source);
-    expect(test1.a).not.toBe(source.a);
-    expect(test1.a.c).not.toBe(source.a.c);
-    expect(test1.a.c.v).toBe(100);
-    expect(test1.a.c.x).toBe(300);
-    expect(test1.b).toBe(source.b);
-    expect(test1.b.d).toBe(source.b.d);
 });
 
 test('set: new route', () => {
-    let source = {
-        a: {
-            c: {
-                v: 100
-            }
-        },
-        b: {
-            d: {
-                u: 200
-            }
-        }
-    };
-
-    let test1 = set(source, ['a', 'c', 'x', 'f'], 300);
-
-    expect(test1).toEqual({
+    expect(set(source, ['a', 'c', 'x', 'f'], 300)).toEqual({
         a: {
             c: {
                 v: 100,
                 x: {
                     f: 300
                 }
-            }
+            },
+            e: [
+                100,
+                {
+                    x: 200
+                },
+                300
+            ]
         },
         b: {
             d: {
@@ -107,79 +91,95 @@ test('set: new route', () => {
             }
         }
     });
-
-    expect(test1).not.toBe(source);
-    expect(test1.a).not.toBe(source.a);
-    expect(test1.a.c).not.toBe(source.a.c);
-    expect(test1.a.c.v).toBe(100);
-    expect(test1.a.c.x.f).toBe(300);
-    expect(test1.b).toBe(source.b);
-    expect(test1.b.d).toBe(source.b.d);
 });
 
-test('set: array', () => {
-    let source = {
-        a: [
-            100,
-            {
-                x: 200
-            }
-        ],
-        b: {
-            y: 300
-        }
-    };
-
-    let test1 = set(source, ['a', 2], 400);
-    expect(test1).toEqual({
-        a: [
-            100,
-            {
-                x: 200
+test('set: array 1', () => {
+    expect(set(source, ['a', 'e', 2], 400)).toEqual({
+        a: {
+            c: {
+                v: 100
             },
-            400
-        ],
+            e: [
+                100,
+                {
+                    x: 200
+                },
+                400
+            ]
+        },
         b: {
-            y: 300
-        }
-    });
-
-    let test2 = set(source, ['a', 1], 400);
-    expect(test2).toEqual({
-        a: [
-            100,
-            400
-        ],
-        b: {
-            y: 300
-        }
-    });
-
-    let test3 = set(source, ['a', 1, 'x'], 400);
-    expect(test3).toEqual({
-        a: [
-            100,
-            {
-                x: 400
+            d: {
+                u: 200
             }
-        ],
-        b: {
-            y: 300
         }
     });
-
-    expect(test1).not.toBe(source);
-    expect(test2).not.toBe(source);
-    expect(test3).not.toBe(source);
-
-    expect(test1.a).not.toBe(source.a);
-    expect(test2.a).not.toBe(source.a);
-    expect(test3.a).not.toBe(source.a);
-
-    expect(test1.b).toBe(source.b);
-    expect(test2.b).toBe(source.b);
-    expect(test3.b).toBe(source.b);
-
-    expect(test3.a[1]).not.toBe(source.a[1]);
 });
 
+test('set: array 2', () => {
+    expect(set(source, ['a', 'e', 1], 400)).toEqual({
+        a: {
+            c: {
+                v: 100
+            },
+            e: [
+                100,
+                400,
+                300
+            ]
+        },
+        b: {
+            d: {
+                u: 200
+            }
+        }
+    });
+});
+
+test('set: array (new index)', () => {
+    expect(set(source, ['a', 'e', 3], 400)).toEqual({
+        a: {
+            c: {
+                v: 100
+            },
+            e: [
+                100,
+                {
+                    x: 200
+                },
+                300,
+                400
+            ]
+        },
+        b: {
+            d: {
+                u: 200
+            }
+        }
+    });
+});
+
+test('set: invalid source', () => {
+    expect(set(null, ['a', 'e', 3], 400)).toEqual({
+        a: {
+            e: {
+                '3': 400
+            }
+        }
+    });
+});
+
+test('set: invalid route 1', () => {
+    let s = set(source, [], 400);
+    expect(s).toEqual(model);
+    expect(s).toBe(source);
+});
+
+test('set: invalid route 2', () => {
+    let s = set(source, null, 400);
+    expect(s).toEqual(model);
+    expect(s).toBe(source);
+});
+
+test('set: model comparison', () => {
+    expect(source).toEqual(model);
+});

@@ -1,9 +1,11 @@
+export * from './delete';
 export * from './set';
+export * from './remove';
+
 /*
 // OBJECT AND ARRAY
 + set
-- remove
-- clone
++ remove
 - merge
 
 // ARRAY ONLY
@@ -14,4 +16,9 @@ export * from './set';
 - reverse
 - shift
 - unshift
+- splice
+
+
+- chain
+  - something to call custom function
 */
