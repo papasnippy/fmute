@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash';
-import { _merge, Delete } from '../src';
+import { merge, Delete } from '../src';
 
 let source = {
     a: {
@@ -24,7 +24,7 @@ let source = {
 let model = cloneDeep(source);
 
 test('merge: delete 1', () => {
-    expect(_merge(source, { a: Delete })).toEqual({
+    expect(merge(source, { a: Delete })).toEqual({
         b: {
             d: {
                 u: 200
@@ -34,7 +34,7 @@ test('merge: delete 1', () => {
 });
 
 test('merge: delete 2', () => {
-    expect(_merge(source, { a: { c: Delete } })).toEqual({
+    expect(merge(source, { a: { c: Delete } })).toEqual({
         a: {
             e: [
                 100,
@@ -53,7 +53,7 @@ test('merge: delete 2', () => {
 });
 
 test('merge: combined', () => {
-    expect(_merge(source, {
+    expect(merge(source, {
         a: {
             c: Delete,
             e: {
@@ -104,7 +104,7 @@ test('merge: combined', () => {
 });
 
 test('merge: delete non-existent', () => {
-    expect(_merge(source, { a: { z: Delete } })).toEqual(model);
+    expect(merge(source, { a: { z: Delete } })).toEqual(model);
 });
 
 test('merge: model comparison', () => {
