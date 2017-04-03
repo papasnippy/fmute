@@ -1,12 +1,13 @@
 export * from './delete';
 export * from './set';
 export * from './remove';
+export * from './merge';
 
 /*
 // OBJECT AND ARRAY
 + set
 + remove
-- merge
++ merge
 
 // ARRAY ONLY
 - apply row, values: T[] | { [col: number]: T }
