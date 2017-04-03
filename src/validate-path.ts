@@ -1,4 +1,4 @@
-export function validatePath(object: any, path: (string | number)[]) {
+export function _validatePath(object: any, path: (string | number)[]) {
     if (!object || typeof object !== 'object' || !path || !path.length) {
         return false;
     }
@@ -17,4 +17,3 @@ export function validatePath(object: any, path: (string | number)[]) {
     return true;
 }
 
-export default validatePath;

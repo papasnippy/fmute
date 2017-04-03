@@ -1,4 +1,4 @@
-import { validatePath } from '../src/validate-path';
+import { _validatePath } from '../src/validate-path';
 
 let source = {
     a: {
@@ -21,30 +21,30 @@ let source = {
 };
 
 test('validate path 1', () => {
-    expect(validatePath(source, ['a', 'c', 'v'])).toBe(true);
+    expect(_validatePath(source, ['a', 'c', 'v'])).toBe(true);
 });
 
 test('validate path 2', () => {
-    expect(validatePath(source, ['a', 'c'])).toBe(true);
+    expect(_validatePath(source, ['a', 'c'])).toBe(true);
 });
 
 test('validate path 3', () => {
-    expect(validatePath(source, ['a', 'x'])).toBe(false);
+    expect(_validatePath(source, ['a', 'x'])).toBe(false);
 });
 
 test('validate path 4', () => {
-    expect(validatePath(source, ['a', 'c', 'u'])).toBe(false);
+    expect(_validatePath(source, ['a', 'c', 'u'])).toBe(false);
 });
 
 test('validate path 5', () => {
-    expect(validatePath(source, ['a', 'z', 'v'])).toBe(false);
+    expect(_validatePath(source, ['a', 'z', 'v'])).toBe(false);
 });
 
 test('validate path 6', () => {
-    expect(validatePath(null, ['a', 'z', 'v'])).toBe(false);
+    expect(_validatePath(null, ['a', 'z', 'v'])).toBe(false);
 });
 
 test('validate path 7', () => {
-    expect(validatePath(source, ['a', 'c', 'v', 'u'])).toBe(false);
+    expect(_validatePath(source, ['a', 'c', 'v', 'u'])).toBe(false);
 });
 

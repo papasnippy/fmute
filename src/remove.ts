@@ -1,4 +1,4 @@
-import validatePath from './validate-path';
+import { _validatePath } from './validate-path';
 
 function _remove(source: any, path: (string | number)[]) {
     let key = path[0];
@@ -19,7 +19,7 @@ export function remove(source: any, path: string | (string | number)[]): any {
         path = path.split('.');
     }
 
-    if (!validatePath(source, path)) {
+    if (!_validatePath(source, path)) {
         return source;
     }
 
