@@ -1,19 +1,30 @@
 {
   "name": "fmute",
-  "version": "1.0.0",
-  "description": "functions to mutate objects without changing them",
+  "version": "0.1.0",
+  "description": "Functions for immutable-way object changing",
   "main": "index.js",
-  "author": "",
+  "browser": "umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "<REP_URL>"
+  },
   "scripts": {
     "test": "jest --no-cache",
-    "build": ".\\node_modules\\.bin\\webpack",
+    "build:umd:min": ".\\node_modules\\.bin\\webpack --env.min",
+    "build:umd": ".\\node_modules\\.bin\\webpack",
+    "build:es": ".\\node_modules\\.bin\\gulp",
+    "build": "yarn run test && yarn run clean && yarn run build:umd && yarn run build:umd:min && yarn run build:es",
     "tsc": ".\\node_modules\\.bin\\tsc",
-    "clean": ".\\node_modules\\.bin\\rimraf src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
+    "clean": ".\\node_modules\\.bin\\rimraf ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
     "@types/lodash": "^4.14.61",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.6",
     "jest": "^19.0.2",
     "lodash": "^4.17.4",
     "rimraf": "^2.6.1",

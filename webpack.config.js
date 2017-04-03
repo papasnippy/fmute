@@ -2,17 +2,18 @@
 const path = require('path');
 const package = require('./package.json');
 
-module.exports = () => {
+module.exports = (env) => {
+    env = env || {};
     return {
         context: __dirname + '',
         performance: {
             hints: 'warning'
         },
         entry: {
-            'umd': path.resolve(__dirname, './src/index.ts')
+            [env.min ? 'umd.min' : 'umd']: path.resolve(__dirname, './src/index.ts')
         },
         output: {
-            path: path.resolve(__dirname, '.'),
+            path: path.resolve(__dirname, './dist'),
             library: package.name,
             libraryTarget: 'umd',
             filename: '[name].js',
@@ -34,11 +35,15 @@ module.exports = () => {
                         failOnHint: false
                     }
                 }
-            })/*,
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true
-            })*/
-        ],
+            }),
+            (
+                env.min
+                    ? new webpack.optimize.UglifyJsPlugin({
+                        sourceMap: true
+                    })
+                    : null
+            )
+        ].filter(v => !!v),
         module: {
             rules: [
                 {
