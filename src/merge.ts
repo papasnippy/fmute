@@ -1,6 +1,6 @@
 import { Delete } from './delete';
 
-export function merge(target: any, source: any) {
+export function _merge(target: any, source: any, memorizing?: boolean) {
     if (!target || !source || typeof target !== 'object' || typeof source !== 'object') {
         return source;
     }
@@ -13,14 +13,22 @@ export function merge(target: any, source: any) {
         let v = source[k];
 
         if (v === Delete) {
-            delete target[k];
+            if (memorizing) {
+                target[k] = v;
+            } else {
+                delete target[k];
+            }
             continue;
         }
 
-        target[k] = merge(target[k], source[k]);
+        target[k] = _merge(target[k], source[k]);
     }
 
     return target;
+}
+
+export function merge(target: any, source: any) {
+    return _merge(target, source, false);
 }
 
 export default merge;
