@@ -29,13 +29,10 @@ test('transaction', () => {
         .set('a.c.r', 100)
         .remove('b.d.u')
         .merge({ b: { d: { w: { q: 'a' } } } })
-        .apply((state) => ({
-            ...state,
-            p: {
-                w: 100
-            }
-        }))
-        .set('p.e', 200);
+        .apply((state) => ({ ...state, p: { w: 100 } }))
+        .set('p.e', 200)
+        .setIn('b.d', s => ({ ...s, y: 'b' }))
+        .set('a.x', 100);
 
     expect(chain.exec()).toEqual({
         a: {
@@ -49,13 +46,15 @@ test('transaction', () => {
                     x: 200
                 },
                 300
-            ]
+            ],
+            x: 100
         },
         b: {
             d: {
                 w: {
                     q: 'a'
-                }
+                },
+                y: 'b'
             }
         },
         p: {
