@@ -1,5 +1,9 @@
-export function insert<T>(source: T[], index: number, value: T): T[] {
-    return [].concat(source.slice(0, index), [value], source.slice(index));
+export function insert<T>(source: T[], index: number, ...values: T[]): T[] {
+    if (index < 0) {
+        return unshift(source, ...values);
+    }
+
+    return [].concat(source.slice(0, index), values, source.slice(index));
 }
 
 export function pop<T>(source: T[], f?: (v: T) => void): T[] {
@@ -16,8 +20,8 @@ export function pop<T>(source: T[], f?: (v: T) => void): T[] {
     return source.slice(0, length - 1);
 }
 
-export function push<T>(source: T[], value: T): T[] {
-    return [].concat(source, [value]);
+export function push<T>(source: T[], ...values: T[]): T[] {
+    return [].concat(source, values);
 }
 
 export function reverse<T>(source: T[]): T[] {
@@ -38,8 +42,8 @@ export function shift<T>(source: T[], f?: (v: T) => void): T[] {
     return source.slice(1);
 }
 
-export function unshift<T>(source: T[], value: T): T[] {
-    return [].concat([value], source);
+export function unshift<T>(source: T[], ...values: T[]): T[] {
+    return [].concat(values, source);
 }
 
 export function splice<T>(source: T[], start: number, deleteCount: number, ...items: T[]) {
