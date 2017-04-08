@@ -14,7 +14,7 @@ export function setIn(source: any, path: string | (string | number)[], fn: (valu
     }
 
     if (source != void 0 && typeof source !== 'object') {
-        throw new Error(`Cannot set property to non-object value.`);
+        throw new Error(`[fmute/set(In)] Cannot set property to non-object value.`);
     }
 
     let key = path[0];

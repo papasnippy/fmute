@@ -51,6 +51,10 @@ export function splice<T>(source: T[], start: number, deleteCount: number, ...it
         start = 0;
     }
 
+    if (deleteCount < 0) {
+        deleteCount = 0;
+    }
+
     let left = source.slice(0, start);
     let middle = deleteCount ? source.slice(start, start + deleteCount) : [];
     let right = source.slice(start + deleteCount);

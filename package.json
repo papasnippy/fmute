@@ -1,6 +1,6 @@
 {
   "name": "fmute",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Functions for immutable-way object changing",
   "keywords": [
     "immutable"
@@ -18,7 +18,7 @@
   "scripts": {
     "test": "yarn run clean && jest --no-cache --coverage",
     "lint": "./node_modules/.bin/gulp tslint",
-    "build": "yarn run clean && yarn run test && ./node_modules/.bin/gulp",
+    "build": "yarn run test && ./node_modules/.bin/gulp",
     "tsc": "./node_modules/.bin/tsc",
     "clean": "./node_modules/.bin/rimraf ./coverage ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
   },

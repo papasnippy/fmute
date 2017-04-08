@@ -1,4 +1,7 @@
-import { Delete } from './delete';
+/**
+ * Special type for deleting.
+ */
+export const Delete: {} = {};
 
 export function _merge(target: any, source: any, memorizing?: boolean) {
     if (!target || !source || typeof target !== 'object' || typeof source !== 'object') {
@@ -27,8 +30,8 @@ export function _merge(target: any, source: any, memorizing?: boolean) {
     return target;
 }
 
-export function merge(target: any, source: any) {
-    return _merge(target, source, false);
+export function merge(to: any, from: any) {
+    return _merge(to, from, false);
 }
 
 export default merge;

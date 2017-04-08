@@ -65,6 +65,18 @@ test('transaction', () => {
     });
 });
 
+test('transaction: invalid source 1', () => {
+    expect(() => {
+        Chain().exec();
+    }).toThrow();
+});
+
+test('transaction: invalid source 2', () => {
+    expect(() => {
+        Chain().exec(1);
+    }).toThrow();
+});
+
 test('transaction: model comparison', () => {
     expect(source).toEqual(model);
 });

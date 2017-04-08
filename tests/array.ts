@@ -65,6 +65,13 @@ test('array: splice 2', () => {
     });
 });
 
+test('array: splice 3', () => {
+    expect(splice(source, -1, -1, 'x', 'y')).toEqual({
+        removed: [],
+        array: ['x', 'y', 'a', 'b', 'c', 'd', 'e']
+    });
+});
+
 test('array: unshift', () => {
     expect(unshift(source, 'x', 'y')).toEqual(['x', 'y', 'a', 'b', 'c', 'd', 'e']);
 });

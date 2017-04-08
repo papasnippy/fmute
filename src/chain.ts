@@ -1,7 +1,6 @@
-import { Delete } from './delete';
 import { set } from './set';
 import { setIn } from './set-in';
-import { _merge } from './merge';
+import { _merge, Delete } from './merge';
 
 interface IMerge {
     type: 'merge';
@@ -15,7 +14,7 @@ interface IApply {
 
 type TChange = IMerge | IApply;
 
-export class Transaction {
+export class ChainInstance {
     private _changes: TChange[] = [{ type: 'merge', changes: {} }];
 
     constructor (private _source?: any) {}
@@ -38,7 +37,7 @@ export class Transaction {
     }
 
     private _next(change: TChange) {
-        let t = new Transaction(this._source);
+        let t = new ChainInstance(this._source);
         t._changes = this._copyChanges(change);
         return t;
     }
@@ -81,6 +80,10 @@ export class Transaction {
     public exec(source?: any) {
         source = source === void 0 ? this._source : source;
 
+        if (!source || typeof source !== 'object') {
+            throw new Error(`[fmute/chain] Invalid source is provided.`);
+        }
+
         for (let i = 0, len = this._changes.length; i < len; i++) {
             let n = this._changes[i];
             switch (n.type) {
@@ -99,7 +102,7 @@ export class Transaction {
 }
 
 export function Chain(source?: any) {
-    return new Transaction(source);
+    return new ChainInstance(source);
 }
 
 export default Chain;

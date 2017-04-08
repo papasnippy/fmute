@@ -135,6 +135,21 @@ test('set: array 2', () => {
     });
 });
 
+test('set: array 3', () => {
+    let table = [
+        [1, 2],
+        [3, 4]
+    ];
+    let tableModel = cloneDeep(table);
+
+    expect(set(table, [1, 1], 5)).toEqual([
+        [1, 2],
+        [3, 5]
+    ]);
+
+    expect(table).toEqual(tableModel);
+});
+
 test('set: array (new index)', () => {
     expect(set(source, ['a', 'e', 3], 400)).toEqual({
         a: {

@@ -11,7 +11,8 @@ gulp.task('package.json', () => {
     return gulp
         .src([
             './package.json',
-            './README.md'
+            './README.md',
+            './LICENSE.md'
         ])
         .pipe(gulp.dest('./dist'));
 });
