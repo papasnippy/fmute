@@ -21,7 +21,10 @@ let source = {
     }
 };
 
+let sourceArray = ['a', 'b', 'c'];
+
 let model = cloneDeep(source);
+let modelArray = cloneDeep(sourceArray);
 
 test('merge: delete 1', () => {
     expect(merge(source, { a: Delete })).toEqual({
@@ -107,6 +110,32 @@ test('merge: delete non-existent', () => {
     expect(merge(source, { a: { z: Delete } })).toEqual(model);
 });
 
+test('merge: invalid target', () => {
+    expect(merge(null, { a: { z: Delete } })).toEqual({ a: { z: Delete } });
+});
+
+test('merge: invalid source', () => {
+    expect(merge(source, null)).toBe(null);
+});
+
+test('merge: array 1', () => {
+    expect(merge(sourceArray, { '1': 'x' })).toEqual(['a', 'x', 'c']);
+});
+
+test('merge: array 2', () => {
+    expect(merge(sourceArray, ['q', 'w'])).toEqual(['q', 'w', 'c']);
+});
+
+test('merge: array 3', () => {
+    let a = new Array(3);
+    a[1] = 'v';
+    expect(merge(sourceArray, a)).toEqual(['a', 'v', 'c']);
+});
+
 test('merge: model comparison', () => {
     expect(source).toEqual(model);
+});
+
+test('merge: model array comparison', () => {
+    expect(sourceArray).toEqual(modelArray);
 });

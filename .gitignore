@@ -34,3 +34,4 @@ src/**/*.js
 tests/**/*.js
 !webpack.config.js
 !gulpfile.js
+coverage/

@@ -10,7 +10,7 @@ export function pop<T>(source: T[], f?: (v: T) => void): T[] {
     const { length } = source;
 
     if (!length) {
-        return this;
+        return [];
     }
 
     if (f) {
@@ -32,7 +32,7 @@ export function shift<T>(source: T[], f?: (v: T) => void): T[] {
     const { length } = source;
 
     if (!length) {
-        return this;
+        return [];
     }
 
     if (f) {
@@ -47,6 +47,10 @@ export function unshift<T>(source: T[], ...values: T[]): T[] {
 }
 
 export function splice<T>(source: T[], start: number, deleteCount: number, ...items: T[]) {
+    if (start < 0) {
+        start = 0;
+    }
+
     let left = source.slice(0, start);
     let middle = deleteCount ? source.slice(start, start + deleteCount) : [];
     let right = source.slice(start + deleteCount);

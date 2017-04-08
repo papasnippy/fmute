@@ -1,10 +1,11 @@
 import { cloneDeep } from 'lodash';
-import { Chain } from '../src';
+import { Chain, Delete } from '../src';
 
 let source = {
     a: {
         c: {
-            v: 100
+            v: 100,
+            d: 300
         },
         e: [
             100,
@@ -21,14 +22,13 @@ let source = {
     }
 };
 
-let sourceTran = Chain(source);
 let model = cloneDeep(source);
 
 test('transaction', () => {
-    let chain = sourceTran
+    let chain = Chain(source)
         .set('a.c.r', 100)
         .remove('b.d.u')
-        .merge({ b: { d: { w: { q: 'a' } } } })
+        .merge({ a: { c: { d: Delete } }, b: { d: { w: { q: 'a', p: 'b' } } } })
         .apply((state) => ({ ...state, p: { w: 100 } }))
         .set('p.e', 200)
         .setIn('b.d', s => ({ ...s, y: 'b' }))
@@ -52,7 +52,8 @@ test('transaction', () => {
         b: {
             d: {
                 w: {
-                    q: 'a'
+                    q: 'a',
+                    p: 'b'
                 },
                 y: 'b'
             }

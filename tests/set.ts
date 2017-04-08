@@ -158,7 +158,7 @@ test('set: array (new index)', () => {
     });
 });
 
-test('set: invalid source', () => {
+test('set: invalid target 1', () => {
     expect(set(null, ['a', 'e', 3], 400)).toEqual({
         a: {
             e: {
@@ -166,6 +166,12 @@ test('set: invalid source', () => {
             }
         }
     });
+});
+
+test('set: invalid target 2', () => {
+    expect(() => {
+        set(source, ['a', 'c', 'v', 'b'], 400);
+    }).toThrow();
 });
 
 test('set: invalid route 1', () => {

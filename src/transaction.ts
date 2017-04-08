@@ -18,7 +18,7 @@ type TChange = IMerge | IApply;
 export class Transaction {
     private _changes: TChange[] = [{ type: 'merge', changes: {} }];
 
-    constructor (private _source: any) {}
+    constructor (private _source?: any) {}
 
     private get _lastChangesMap(): any {
         let n = this._changes[this._changes.length - 1];
@@ -29,9 +29,6 @@ export class Transaction {
 
             case 'apply':
                 return {};
-
-            default:
-                throw new Error(`Unknown change type ${(n as any).type}`);
         }
     }
 

@@ -21,7 +21,7 @@ export function _merge(target: any, source: any, memorizing?: boolean) {
             continue;
         }
 
-        target[k] = _merge(target[k], source[k]);
+        target[k] = _merge(target[k], source[k], memorizing);
     }
 
     return target;

@@ -15,38 +15,40 @@
     "url": "<REP_URL>"
   },
   "scripts": {
-    "test": "jest --no-cache",
+    "coverage": "yarn run clean && yarn run tsc && .\\node_modules\\.bin\\rimraf ./coverage && jest --no-cache --coverage",
+    "test": "yarn run clean && jest --no-cache --coverage",
     "build:umd:min": ".\\node_modules\\.bin\\webpack --env.min",
     "build:umd": ".\\node_modules\\.bin\\webpack",
     "build:es": ".\\node_modules\\.bin\\gulp",
     "build": "yarn run test && yarn run clean && yarn run build:umd && yarn run build:umd:min && yarn run build:es",
     "tsc": ".\\node_modules\\.bin\\tsc",
-    "clean": ".\\node_modules\\.bin\\rimraf ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
+    "clean": ".\\node_modules\\.bin\\rimraf ./coverage ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
-    "@types/lodash": "^4.14.61",
+    "@types/lodash": "^4.14.62",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.1.6",
     "jest": "^19.0.2",
     "lodash": "^4.17.4",
     "rimraf": "^2.6.1",
-    "ts-jest": "^19.0.6",
+    "ts-jest": "^19.0.8",
     "ts-loader": "^2.0.3",
     "tslint": "4.5.1",
-    "tslint-loader": "^3.4.3",
+    "tslint-loader": "^3.5.1",
     "typescript": "^2.2.2",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.3"
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/tests/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|ts|tsx)$",
     "moduleFileExtensions": [
+      "js",
       "ts",
-      "tsx",
-      "js"
+      "tsx"
     ]
   }
 }

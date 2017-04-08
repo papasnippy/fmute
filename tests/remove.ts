@@ -54,7 +54,7 @@ test('set: route', () => {
 });
 
 test('set: invalid route 1', () => {
-    let r = remove(source, ['a', 'x', 'v']);
+    let r = remove(source, 'a.x.v');
     expect(r).toEqual(model);
     expect(r).toBe(source);
 });
