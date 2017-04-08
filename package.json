@@ -17,10 +17,10 @@
   },
   "scripts": {
     "test": "yarn run clean && jest --no-cache --coverage",
-    "lint": ".\\node_modules\\.bin\\gulp tslint",
-    "build": "yarn run clean && yarn run test && .\\node_modules\\.bin\\gulp",
-    "tsc": ".\\node_modules\\.bin\\tsc",
-    "clean": ".\\node_modules\\.bin\\rimraf ./coverage ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
+    "lint": "./node_modules/.bin/gulp tslint",
+    "build": "yarn run clean && yarn run test && ./node_modules/.bin/gulp",
+    "tsc": "./node_modules/.bin/tsc",
+    "clean": "./node_modules/.bin/rimraf ./coverage ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
