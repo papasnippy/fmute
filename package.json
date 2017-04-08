@@ -10,10 +10,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "<REP_URL>"
+    "url": "https://github.com/papasnippy/fmute.git"
+  },
+  "bugs": {
+    "url": "https://github.com/papasnippy/fmute/issues"
   },
   "scripts": {
-    "coverage": "yarn run clean && yarn run tsc && .\\node_modules\\.bin\\rimraf ./coverage && jest --no-cache --coverage",
     "test": "yarn run clean && jest --no-cache --coverage",
     "lint": ".\\node_modules\\.bin\\gulp tslint",
     "build": "yarn run test && yarn run clean && .\\node_modules\\.bin\\gulp",
