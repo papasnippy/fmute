@@ -1,11 +1,12 @@
 {
   "name": "fmute",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Functions for immutable-way object changing",
   "keywords": [
     "immutable"
   ],
   "main": "index.js",
+  "modules": "es/index.js",
   "typings": "index.d.ts",
   "license": "MIT",
   "repository": {
@@ -24,16 +25,16 @@
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
-    "@types/lodash": "^4.14.62",
+    "@types/lodash": "^4.14.63",
     "gulp": "^3.9.1",
-    "gulp-tslint": "^7.1.0",
+    "gulp-tslint": "^8.0.0",
     "gulp-typescript": "^3.1.6",
     "jest": "^19.0.2",
     "lodash": "^4.17.4",
     "rimraf": "^2.6.1",
-    "ts-jest": "^19.0.8",
-    "tslint": "4.5.1",
-    "typescript": "^2.2.2"
+    "ts-jest": "^19.0.14",
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
   },
   "jest": {
     "transform": {

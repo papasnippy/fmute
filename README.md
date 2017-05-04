@@ -5,7 +5,7 @@ fmute
 
 **fmute** is a set of functions to mutate data without changing the source. The reason of this library is to have pure javascript objects, mutate it in functional way and do not waste memory for immutable object wrappers.
 
-Library is written in TypeScript and provide it's own type definitions. This is a **commonjs** module.
+Library is written in TypeScript and provide it's own type definitions. `fmute/*` exports as **commonjs** module. **ES6** build also included.
 
 Exports
 ===

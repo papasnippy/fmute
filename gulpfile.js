@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
-const tsp = ts.createProject('tsconfig.json', { declaration: true });
+const tsCommonjs = ts.createProject('tsconfig.json', { declaration: true });
+const tsModule = ts.createProject('tsconfig.json', { module: 'es6' });
 const SRC = [
     './src/**/*.ts',
     './src/**/*.tsx'
@@ -29,11 +30,18 @@ gulp.task('tslint', () => {
         }));
 });
 
-gulp.task('build', ['tslint'], () => {
+gulp.task('build:commonjs', ['tslint'], () => {
     return gulp
         .src(SRC)
-        .pipe(tsp())
+        .pipe(tsCommonjs())
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('default', ['package.json', 'tslint', 'build']);
+gulp.task('build:es', ['tslint'], () => {
+    return gulp
+        .src(SRC)
+        .pipe(tsModule())
+        .pipe(gulp.dest('./dist/es'));
+});
+
+gulp.task('default', ['package.json', 'tslint', 'build:commonjs', 'build:es']);
