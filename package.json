@@ -1,12 +1,12 @@
 {
   "name": "fmute",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Functions for immutable-way object changing",
   "keywords": [
     "immutable"
   ],
   "main": "index.js",
-  "modules": "es/index.js",
+  "module": "es/index.js",
   "typings": "index.d.ts",
   "license": "MIT",
   "repository": {
@@ -24,24 +24,24 @@
     "clean": "./node_modules/.bin/rimraf ./coverage ./dist src/**/*.js src/**/*.map src/**/*.d.ts tests/**/*.js tests/**/*.map tests/**/*.d.ts"
   },
   "devDependencies": {
-    "@types/jest": "^19.2.2",
-    "@types/lodash": "^4.14.63",
+    "@types/jest": "^20.0.1",
+    "@types/lodash": "^4.14.64",
     "gulp": "^3.9.1",
-    "gulp-tslint": "^8.0.0",
-    "gulp-typescript": "^3.1.6",
-    "jest": "^19.0.2",
+    "gulp-tslint": "^8.1.0",
+    "gulp-typescript": "^3.1.7",
+    "jest": "^20.0.4",
     "lodash": "^4.17.4",
     "rimraf": "^2.6.1",
-    "ts-jest": "^19.0.14",
-    "tslint": "^5.2.0",
-    "typescript": "^2.3.2"
+    "ts-jest": "^20.0.5",
+    "tslint": "^5.3.2",
+    "typescript": "^2.3.4"
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
     "testRegex": "(/tests/.*|\\.(test|spec))\\.(js|ts|tsx)$",
+    "mapCoverage": true,
     "moduleFileExtensions": [
       "js",
       "ts",

@@ -76,6 +76,11 @@ test('set: invalid source', () => {
     expect(r).toBe(null);
 });
 
+test('set: array source', () => {
+    let r = remove([1, 2, 3], '1');
+    expect(r).toEqual([1, void 0, 3]);
+});
+
 test('remove: model comparison', () => {
     expect(source).toEqual(model);
 });

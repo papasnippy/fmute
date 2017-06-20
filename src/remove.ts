@@ -2,7 +2,7 @@ import { _validatePath } from './validate-path';
 
 function _remove(source: any, path: (string | number)[]) {
     let key = path[0];
-    let target: any = Array.isArray(source || {}) ? [] : {};
+    let target: any = Array.isArray(source) ? [] : {};
 
     if (path.length === 1) {
         target = Object.assign(target, source);
