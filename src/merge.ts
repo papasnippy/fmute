@@ -1,7 +1,7 @@
 /**
  * Special type for deleting.
  */
-export const Delete: {} = {};
+export const Delete = Symbol('fmute/delete');
 
 export function _merge(target: any, source: any, memorizing?: boolean) {
     if (!target || !source || typeof target !== 'object' || typeof source !== 'object') {
